@@ -11,10 +11,8 @@ TARGET_DIR=/home/team02
 
 # Build the project
 
-mkdir BUILD_DIR1
 cmake --build $BUILD_DIR1
 
-mkdir BUILD_DIR2
 cmake --build $BUILD_DIR2
 
 # Remove old executables on the target machine
