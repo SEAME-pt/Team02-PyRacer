@@ -3,7 +3,7 @@
 # Set variables
 BUILD_DIR1=CarController/build
 BUILD_DIR2=XboxController/build
-EXECUTABLE1=i2c
+EXECUTABLE1=RaceCar
 EXECUTABLE2=controller
 TARGET_USER=team02
 TARGET_IP=10.21.221.71
