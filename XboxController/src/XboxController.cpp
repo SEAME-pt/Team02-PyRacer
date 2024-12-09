@@ -84,7 +84,8 @@ XboxController::XboxController()
     pthread_mutexattr_t attr;
     pthread_mutexattr_init(&attr);
     pthread_mutexattr_setpshared(&attr, PTHREAD_PROCESS_SHARED);
-    pthread_mutex_init(&sharedData->mtx, &attr);
+    pthread_mutex_init(&sharedData->mtx_speed, &attr);
+    pthread_mutex_init(&sharedData->mtx_direction, &attr);
     pthread_mutexattr_destroy(&attr);
 
 }
@@ -115,10 +116,13 @@ void XboxController::test( void )
     while (1)
     {
         {
-            pthread_mutex_lock(&this->sharedData->mtx);
+            pthread_mutex_lock(&this->sharedData->mtx_speed);
             std::cout << "SPEED: " << this->sharedData->speed << std::endl;
+            pthread_mutex_unlock(&this->sharedData->mtx_speed);
+            
+            pthread_mutex_lock(&this->sharedData->mtx_direction);
             std::cout << "DIRECTION: " << this->sharedData->direction << std::endl;
-            pthread_mutex_unlock(&this->sharedData->mtx);
+            pthread_mutex_unlock(&this->sharedData->mtx_direction);
         }
         //std::this_thread::sleep_for(std::chrono::seconds(1));
     }
